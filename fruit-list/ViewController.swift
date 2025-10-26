@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FruitCell", for: indexPath) as! FruitCell
-        cell.img.image = UIImage(named: "placeholder")
+        cell.img.image = UIImage(named: FruitCollection.fruits[indexPath.row].img ?? "placeholder")
         cell.name.text = FruitCollection.fruits[indexPath.row].name
         cell.likes.text = String("Likes: \(FruitCollection.fruits[indexPath.row].likes)")
         cell.dislikes.text = String("Dislikes: \(FruitCollection.fruits[indexPath.row].dislikes)")
@@ -91,8 +91,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     
+    // removed implementation because it causes 'delete cell' to crash app
     @IBAction func search(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange: Int) {
-//        let searchBarText = searchBar.text ?? ""
+        let searchBarText = searchBar.text ?? ""
         let selectedScopeButtonIndex = searchBar.selectedScopeButtonIndex
         
         switch selectedScopeButtonIndex {
@@ -116,5 +117,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         table.reloadData()
     }
-    
 }
