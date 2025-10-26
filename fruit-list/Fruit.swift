@@ -8,16 +8,21 @@
 import UIKit
 
 class Fruit: Equatable, Codable {
-//    var img: UIImage?
+    var img: String?
     var name: String
     var likes: Int
     var dislikes: Int
     
-    init(name: String, likes: Int, dislikes: Int) {
-//        img: UIImage? = nil, 
-//        self.img = img
+    init(img: String, name: String, likes: Int, dislikes: Int) {
+        self.img = img
         self.name = name
         self.likes = likes
         self.dislikes = dislikes
+    }
+    
+    static func == (lhs: Fruit, rhs: Fruit) -> Bool {
+        return lhs.name == rhs.name
+        && lhs.likes == rhs.likes
+        && lhs.dislikes == rhs.dislikes
     }
 }

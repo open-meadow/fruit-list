@@ -42,9 +42,21 @@ class FruitCollection: Codable {
         fruits.insert(movedFruit, at: to)
     }
     
-    static func addFruit(name: String, likes: Int, dislikes: Int) {
-        let newFruit = Fruit(name: name, likes: likes, dislikes: dislikes)
+    static func addFruit(img: String, name: String, likes: Int, dislikes: Int) {
+        let newFruit = Fruit(img: img, name: name, likes: likes, dislikes: dislikes)
         fruits.append(newFruit)
     }
+    
+    static func load() {
+            // Seed default fruits for demo purposes
+            self.fruits = [
+                Fruit(img: "", name: "Apple", likes: 5, dislikes: 2),
+                Fruit(img: "", name: "Banana", likes: 3, dislikes: 1),
+                Fruit(img: "", name: "Orange", likes: 4, dislikes: 0),
+                Fruit(img: "", name: "Grapes", likes: 2, dislikes: 3),
+                Fruit(img: "", name: "Mango", likes: 10, dislikes: 1)
+            ]
+    }
+
     
 }

@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         _ = FruitCollection()
         FruitCollection.unarchive()
+        
+        FruitCollection.load()
+        table.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,6 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FruitCell", for: indexPath) as! FruitCell
+        cell.img.image = UIImage(named: "placeholder")
         cell.name.text = FruitCollection.fruits[indexPath.row].name
         cell.likes.text = String(FruitCollection.fruits[indexPath.row].likes)
         cell.dislikes.text = String("$\(FruitCollection.fruits[indexPath.row].dislikes)")
