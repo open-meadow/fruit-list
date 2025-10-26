@@ -10,6 +10,9 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var table:UITableView!
+    @IBOutlet weak var searchBar:UISearchBar!
+    
+    var currentFruits: [Fruit] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         FruitCollection.unarchive()
         
         FruitCollection.load()
+        
+        currentFruits = FruitCollection.fruits
         table.reloadData()
     }
     
@@ -79,10 +84,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     fruitDetailViewController.fruit = fruit
                 }
         case "showAddFruit":
+            // without this, app crashes when creating new fruit
             break
         default:
             preconditionFailure("Unexpected segue identifier.")
             }
         }
+    
+    @IBAction func search(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange: Int) {
+//        let searchBarText = searchBar.text ?? ""
+        let selectedScopeButtonIndex = searchBar.selectedScopeButtonIndex
+        
+        switch selectedScopeButtonIndex {
+        case 0:
+            // All fruits
+            currentFruits = FruitCollection.fruits
+        case 1:
+            // Liked Fruits
+            currentFruits = FruitCollection.fruits.filter({
+                fruit -> Bool in fruit.likes >= fruit.dislikes
+            })
+        case 2:
+            // Disliked Fruits
+            currentFruits = FruitCollection.fruits.filter({
+                fruit -> Bool in fruit.likes < fruit.dislikes
+            })
+        default:
+            break
+        }
+        
+        
+        table.reloadData()
     }
-
+    
+}
