@@ -30,8 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "FruitCell", for: indexPath) as! FruitCell
         cell.img.image = UIImage(named: "placeholder")
         cell.name.text = FruitCollection.fruits[indexPath.row].name
-        cell.likes.text = String(FruitCollection.fruits[indexPath.row].likes)
-        cell.dislikes.text = String("$\(FruitCollection.fruits[indexPath.row].dislikes)")
+        cell.likes.text = String("Likes: \(FruitCollection.fruits[indexPath.row].likes)")
+        cell.dislikes.text = String("Dislikes: \(FruitCollection.fruits[indexPath.row].dislikes)")
         
         return cell
     }
@@ -64,6 +64,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func returnToMain(_ segue:UIStoryboardSegue) {
         table.reloadData()
     }
-
-}
+    
+    // passes row number to FruitDetailViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // if triggered segue is the showFruit
+        switch segue.identifier {
+        case "showFruit":
+                // figure out which row was just tapped
+                if let row = table.indexPathForSelectedRow?.row {
+                    // get fruit associated with this row and pass it along
+                    let fruit = FruitCollection.fruits[row]
+                    let fruitDetailViewController = segue.destination as! FruitDetailViewController
+                    
+                    fruitDetailViewController.fruit = fruit
+                }
+        case "showAddFruit":
+            break
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+            }
+        }
+    }
 

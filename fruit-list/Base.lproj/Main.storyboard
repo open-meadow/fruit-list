@@ -76,6 +76,7 @@
                                                     <outlet property="img" destination="hhM-Hz-OPY" id="lqG-iM-1T1"/>
                                                     <outlet property="likes" destination="UZl-ih-TL2" id="jM3-Ib-YYW"/>
                                                     <outlet property="name" destination="BG1-TI-HgR" id="Ooc-w3-HBO"/>
+                                                    <segue destination="aWQ-nM-YeG" kind="show" identifier="showFruit" id="a53-h3-Tce"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -89,7 +90,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Add"/>
                                         <connections>
-                                            <segue destination="pYl-Ml-pfi" kind="show" id="NHE-Pf-HgS"/>
+                                            <segue destination="pYl-Ml-pfi" kind="show" identifier="showAddFruit" id="NHE-Pf-HgS"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -118,36 +119,64 @@
             </objects>
             <point key="canvasLocation" x="1089.3129770992366" y="57.74647887323944"/>
         </scene>
-        <!--View Controller-->
+        <!--Fruit Detail-->
         <scene sceneID="ZfO-bO-aYa">
             <objects>
-                <viewController id="aWQ-nM-YeG" sceneMemberID="viewController">
+                <viewController id="aWQ-nM-YeG" customClass="FruitDetailViewController" customModule="fruit_list" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jNG-HL-Rfr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oxL-gc-MV9">
-                                <rect key="frame" x="80" y="326" width="240" height="148.33333333333337"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oxL-gc-MV9">
+                                <rect key="frame" x="80" y="326" width="240.33333333333337" height="189"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-Ft-kNQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-Ft-kNQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="240.33333333333334" height="128"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbg-58-aqO">
-                                        <rect key="frame" x="99.333333333333329" y="127.99999999999999" width="41.333333333333329" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbg-58-aqO">
+                                        <rect key="frame" x="99.666666666666657" y="127.99999999999999" width="41.333333333333343" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8C-Rh-hQ3">
+                                        <rect key="frame" x="96" y="148.33333333333331" width="48.333333333333343" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dislikes: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjb-2a-EqL">
+                                        <rect key="frame" x="86.666666666666657" y="168.66666666666669" width="67" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="hMz-Ft-kNQ" firstAttribute="leading" secondItem="oxL-gc-MV9" secondAttribute="leadingMargin" id="BoE-ew-VvI"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VbX-OB-MNJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VbX-OB-MNJ" firstAttribute="trailing" secondItem="oxL-gc-MV9" secondAttribute="trailing" constant="72.666666666666629" id="5SQ-pF-tc0"/>
+                            <constraint firstItem="oxL-gc-MV9" firstAttribute="leading" secondItem="VbX-OB-MNJ" secondAttribute="leading" constant="80" id="C83-Jt-Ox0"/>
+                            <constraint firstItem="VbX-OB-MNJ" firstAttribute="bottom" secondItem="oxL-gc-MV9" secondAttribute="bottom" constant="269" id="Rtu-We-lBa"/>
+                            <constraint firstItem="oxL-gc-MV9" firstAttribute="top" secondItem="VbX-OB-MNJ" secondAttribute="top" constant="154" id="yrV-kx-jZA"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Fruit Detail" id="x9I-8L-O5G"/>
+                    <connections>
+                        <outlet property="dislikesLabel" destination="tjb-2a-EqL" id="yT3-yF-b5e"/>
+                        <outlet property="imageView" destination="hMz-Ft-kNQ" id="ATC-ed-PiN"/>
+                        <outlet property="likesLabel" destination="f8C-Rh-hQ3" id="CIw-im-SY3"/>
+                        <outlet property="nameLabel" destination="sbg-58-aqO" id="DLc-LN-Wka"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMp-TP-uiv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="744"/>
+            <point key="canvasLocation" x="1089" y="874"/>
         </scene>
         <!--Add Fruit-->
         <scene sceneID="tsg-wl-YRU">
